@@ -31,7 +31,10 @@ FROM
 LEFT JOIN
     Review
 ON
-    Property.property_id = Review.property_id;
+    Property.property_id = Review.property_id
+ORDER BY
+    Property.property_id ASC,
+    Review.created DESC;
 
 
 -- Combine LEFT JOIN and RIGHT JOIN to simulate FULL OUTER JOIN
