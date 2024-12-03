@@ -22,6 +22,7 @@ SELECT
     Property.property_id,
     Property.prop_name,
     COUNT(Booking.booking_id) AS total_bookings,
+    RANK() OVER (ORDER BY COUNT(Booking.booking_id) DESC) AS rank,
     ROW_NUMBER() OVER (ORDER BY COUNT(Booking.booking_id) DESC) AS row_number
 FROM 
     Property
@@ -32,5 +33,5 @@ ON
 GROUP BY 
     Property.property_id, Property.prop_name
 ORDER BY 
-    row_number;
+    rank;
 
